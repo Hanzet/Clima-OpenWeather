@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { countries } from '../../data/countries'
-import type { SearchType, Country } from '../../types'
+import type { SearchType } from '../../types'
 import styles from './Form.module.css'
 import { Alert } from '../Alert/Alert'
 

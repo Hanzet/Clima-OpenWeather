@@ -1,21 +1,27 @@
 import styles from "./App.module.css" // Definir el nombre del archivo de estilos en este styles
+import { Alert } from "./components/Alert/Alert"
 import Form from "./components/Form/Form"
+import Spinner from "./components/Spinner/Spinner"
+import WeatherDetail from "./components/WeatherDetail/WeatherDetail"
 import useWeather from "./hooks/useWeather"
 
 function App() {
-  const { fetchWeather } = useWeather()
+  const { fetchWeather, weather, hasWeatherData, loading, notFound } = useWeather()
   
-  console.log(import.meta.env.VITE_API_KEY)
+  // console.log(import.meta.env.VITE_API_KEY)
 
   return (
     <>
-      <h1 className={styles.title}>Hola Mundo</h1>
+      <h1 className={styles.title}>Buscador de Clima</h1>
 
       <div className={styles.container}>
         <Form
           fetchWeather={fetchWeather}
         />
-        <p>2</p>
+
+        {loading && <Spinner />}
+        {hasWeatherData && <WeatherDetail weather={weather} />}
+        {notFound && <Alert>Ciudad no encontrada</Alert>}
       </div>
     </>
   )
